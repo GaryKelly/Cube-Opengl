@@ -29,10 +29,10 @@ private:
 	Clock clock;
 	Time elapsed;
 
-	MyVector3 vect1{ 1.0 ,1.0, - 5.0 }; //front right top
-	MyVector3 vect2{ -1.0,1.0,-5.0 }; //front left top
-	MyVector3 vect3{ -1.0,-1.0,-5.0 }; //front left bottom
-	MyVector3 vect4{ 1.0,-1.0,-5.0 }; //front right bottom
+	MyVector3 vect1{ 1.0 ,1.0, - 7.0 }; //front right top
+	MyVector3 vect2{ -1.0,1.0,-7.0 }; //front left top
+	MyVector3 vect3{ -1.0,-1.0,-7.0 }; //front left bottom
+	MyVector3 vect4{ 1.0,-1.0,-7.0 }; //front right bottom
 	MyVector3 vect5{ 1.0f, 1.0f, -15.0f }; //back right top
 	MyVector3 vect6{ -1.0f, 1.0f, -15.0f }; //back left top
 	MyVector3 vect7{ -1.0f, -1.0f, -15.0f }; //back left bottom

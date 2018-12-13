@@ -20,12 +20,17 @@ void Game::run()
 
 	while (isRunning){
 
-		cout << "Game running..." << endl;
+	
 
 		while (window.pollEvent(event))
 		{
 			if (event.type == Event::Closed)
 			{
+				isRunning = false;
+			}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+			{
+				window.close();
 				isRunning = false;
 			}
 		}
@@ -104,10 +109,7 @@ void Game::initialize()
 void Game::update()
 {
 	elapsed = clock.getElapsedTime();
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
-	{
-		window.close();
-	}
+	
 	if (elapsed.asSeconds() >= 1.0f)
 	{
 		clock.restart();
@@ -188,9 +190,9 @@ void Game::update()
 		MyMatrix3 m_matrix1{ vect1,vect2,vect3 };
 		MyMatrix3 m_matrix2{ vect4,vect5,vect6 };
 		MyMatrix3 m_matrix3{ vect7,vect8,vect9 };
-		m_matrix1 = m_matrix1.operator-(matrix1.scale(.001));
-		m_matrix2 = m_matrix2.operator-(matrix2.scale(.001));
-		m_matrix3 = m_matrix3.operator-(matrix3.scale(.001));
+		m_matrix1 = m_matrix1.operator*(matrix1.scale(1.0009));
+		m_matrix2 = m_matrix2.operator*(matrix2.scale(1.0009));
+		m_matrix3 = m_matrix3.operator*(matrix3.scale(1.0009));
 		vect1 = m_matrix1.row(0);
 		vect2 = m_matrix1.row(1);
 		vect3 = m_matrix1.row(2);
@@ -201,7 +203,26 @@ void Game::update()
 		vect8 = m_matrix3.row(1);
 	}
 
-
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::T))
+	{
+		MyMatrix3 matrix1;
+		MyMatrix3 matrix2;
+		MyMatrix3 matrix3;
+		MyMatrix3 m_matrix1{ vect1,vect2,vect3 };
+		MyMatrix3 m_matrix2{ vect4,vect5,vect6 };
+		MyMatrix3 m_matrix3{ vect7,vect8,vect9 };
+		m_matrix1 = m_matrix1.operator-(matrix1.translation(MyVector3(.0001,.0001,0)));
+		m_matrix2 = m_matrix2.operator-(matrix2.translation(MyVector3(.0001, .0001, 0)));
+		m_matrix3 = m_matrix3.operator-(matrix3.translation(MyVector3(.0001,.0001, 0)));
+		vect1 = m_matrix1.row(0);
+		vect2 = m_matrix1.row(1);
+		vect3 = m_matrix1.row(2);
+		vect4 = m_matrix2.row(0);
+		vect5 = m_matrix2.row(1);
+		vect6 = m_matrix2.row(2);
+		vect7 = m_matrix3.row(0);
+		vect8 = m_matrix3.row(1);
+	}
 
 
 
@@ -254,17 +275,15 @@ void Game::update()
 	}
 	glEnd();
 	glEndList();
-	
-	cout << "Update up" << endl;
+
 }
 
 void Game::draw()
 {
-	cout << "Drawing" << endl;
+
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	cout << "Drawing Cube " << endl;
 	glLoadIdentity();
 	//glRotatef(rotationAngle, 0, 0, 1); // Rotates the camera on Y Axis
 
@@ -276,6 +295,6 @@ void Game::draw()
 
 void Game::unload()
 {
-	cout << "Cleaning up" << endl;
+
 }
 

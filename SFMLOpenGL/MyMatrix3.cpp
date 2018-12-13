@@ -423,9 +423,9 @@ MyMatrix3 MyMatrix3::rotationX(const double t_angleRadians)
 /// <returns></returns>
 MyMatrix3 MyMatrix3::translation(const MyVector3 t_displacement)
 {
-	MyMatrix3 tran{ 1, 0, t_displacement.x,
-				    0, 1, t_displacement.y,
-				    0, 0, t_displacement.z };
+	MyMatrix3 tran{ 1, 0, 0,
+				    0, 1, 0,
+				    t_displacement.x, t_displacement.y, 0 };
 	return tran;
 }
 
